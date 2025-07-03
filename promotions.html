@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Page - Botanical Bites</title>
+
+    <!--========== BOX ICONS ==========-->
+    <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+
+    <!--========== CSS ==========-->
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        .menu__items {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+            color: black;
+        }
+
+        .menu__item {
+            background-color: #fff;
+            border-radius: 1rem;
+            padding: 1rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.2s;
+        }
+
+        .menu__item:hover {
+            transform: scale(1.03);
+        }
+
+        .menu__img {
+            width: 220px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .menu__price {
+            font-weight: bold;
+            color: #048654;
+        }
+
+        .menu__filters {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .filter-button {
+            background-color: #eee;
+            border: none;
+            padding: 0.5rem 1rem;
+            margin: 0 0.5rem;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .filter-button:hover {
+            background-color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <header class="l-header" id="header">
+        <nav class="nav bd-container">
+            <a href="#" class="nav__logo">Botanical Bites <i class="fa-solid fa-spa"></i></a>
+
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    <li class="nav__item"><a href="index.html" class="nav__link active-link">Home</a></li>
+                    <li class="nav__item"><a href="about.html" class="nav__link">About</a></li>
+                    <li class="nav__item"><a href="#services" class="nav__link">Services</a></li>
+                    <li class="nav__item"><a href="#menu" class="nav__link">Menu</a></li>
+                    <li class="nav__item"><a href="contact.html" class="nav__link">Contact Us</a></li>
+                    <li class="nav__item"><a href="promotions.html" class="nav__link">Promotions</a></li>
+
+                    <li><i class='bx bx-moon change-theme' id="theme-button"></i></li>
+                </ul>
+            </div>
+
+            <div class="nav__toggle" id="nav-toggle">
+                <i class='bx bx-menu'></i>
+            </div>
+        </nav>
+    </header>
+
+    <section class="menu section bd-container" id="menu">
+        <span class="section-subtitle">Special Menu</span>
+        <h2 class="section-title">Promotions</h2>
+
+        <div class="menu__categories">
+            <h3>Seasonal Specials</h3>
+            <div class="menu__items">
+                <div class="menu__item vegetarian">
+                    <img src="Images/promotion1.png" alt="Autumn Harvest Bowl" class="menu__img">
+                    <h4>Autumn Harvest Bowl – R90</h4>
+                    <p>Roasted butternut, baby spinach, wild rice, toasted seeds, and tahini dressing.</p>
+                    <span class="menu__price">R20 Off this month!</span>
+                </div>
+                <div class="menu__item vegetarian">
+                    <img src="Images/promotion2.jpg" alt="Spring Pea Risotto" class="menu__img">
+                    <h4>Spring Pea Risotto – R115</h4>
+                    <p>Creamy risotto with fresh peas, mint, lemon zest, and shaved parmesan.</p>
+                    <span class="menu__price">New! Limited-time Spring Feature</span>
+                </div>
+                <div class="menu__item vegetarian">
+                    <img src="Images/promotion3.jpg" alt="Winter Root Veggie Roast" class="menu__img">
+                    <h4>Winter Root Veggie Roast – R98</h4>
+                    <p>Beetroot, carrots, parsnips with rosemary & garlic olive oil.</p>
+                    <span class="menu__price">Buy 1, Get 50% Off the 2nd</span>
+                </div>
+            </div>
+
+            <h3>Chef’s Signature Deals</h3>
+            <div class="menu__items">
+                <div class="menu__item gluten-free">
+                    <img src="Images/promotion4.jpg" alt="Lindi’s Lemon-Herb Chicken" class="menu__img">
+                    <h4>Lindi’s Lemon-Herb Chicken – R130</h4>
+                    <p>Grilled free-range chicken breast, lemon-thyme glaze, baby potatoes.</p>
+                    <span class="menu__price">Get a Free Fresh Juice with This Dish</span>
+                </div>
+                <div class="menu__item gluten-free">
+                    <img src="Images/promotion5.jpg" alt="Thabiso’s Green Curry" class="menu__img">
+                    <h4>Thabiso’s Green Curry Quinoa Bowl – R125</h4>
+                    <p>Coconut green curry with organic veggies over tri-color quinoa.</p>
+                    <span class="menu__price">R25 Off | Chef’s Pick of the Week</span>
+                </div>
+                <div class="menu__item gluten-free">
+                    <img src="Images/promotion6.jpg" alt="Farm-to-Table Pasta" class="menu__img">
+                    <h4>Farm-to-Table Pasta – R110</h4>
+                    <p>Hand-cut spinach pasta, roasted heirloom tomatoes, vegan basil cream.</p>
+                    <span class="menu__price">Gluten-Free Option | Save R15</span>
+                </div>
+            </div>
+
+            <h3>Detox & Wellness Boosts</h3>
+            <div class="menu__items">
+                <div class="menu__item vegetarian">
+                    <img src="Images/promotion7.jpg" alt="Immunity Booster Broth" class="menu__img">
+                    <h4>Immunity Booster Broth – R72</h4>
+                    <p>Turmeric-ginger bone broth with seasonal greens and soba noodles.</p>
+                    <span class="menu__price">Immunity Deal: Add Ginger Shot for R10</span>
+                </div>
+                <div class="menu__item vegetarian">
+                    <img src="Images/promotion8.jpg" alt="Glow-Up Salad" class="menu__img">
+                    <h4>Glow-Up Salad – R85</h4>
+                    <p>Kale, blueberries, avo, chickpeas, flax seeds, cider vinaigrette.</p>
+                    <span class="menu__price">10% Off All Week</span>
+                </div>
+                <div class="menu__item vegetarian">
+                    <img src="Images/promotion9.jpg" alt="Hydrating Cucumber Gazpacho" class="menu__img">
+                    <h4>Hydrating Cucumber Gazpacho – R70</h4>
+                    <p>Chilled cucumber and mint soup with lime.</p>
+                    <span class="menu__price">Free Detox Water with Order</span>
+                </div>
+            </div>
+
+            <h3>Two-for-One Tuesdays / Combo Deals</h3>
+            <div class="menu__items">
+                <div class="menu__item">
+                    <img src="Images/promotion10.jpg" alt="Green Goddess Wrap Combo" class="menu__img">
+                    <h4>Green Goddess Wrap Combo – R105</h4>
+                    <p>Organic wrap with hummus, avo, cucumbers + mint lemonade.</p>
+                    <span class="menu__price">Buy 1 Combo, Get the 2nd for R50</span>
+                </div>
+                <div class="menu__item">
+                    <img src="Images/promotion11.jpg" alt="Burger & Bites Deal" class="menu__img">
+                    <h4>Burger & Bites Deal – R115</h4>
+                    <p>Chickpea burger, sweet potato wedges + iced rooibos.</p>
+                    <span class="menu__price">Free Mini Dessert with This Combo</span>
+                </div>
+                <div class="menu__item">
+                    <img src="Images/promotion12.jpg" alt="Soup & Salad Duo" class="menu__img">
+                    <h4>Soup & Salad Duo – R95</h4>
+                    <p>Butternut soup + beetroot & feta salad with rye crispbread.</p>
+                    <span class="menu__price">Save R20 When Ordered Together</span>
+                </div>
+            </div>
+        </div>
+    </section>
+     <!--========== MAIN.JS LIGHT/DARK MODE ONLY ==========-->
+  <script>
+    const themeButton = document.getElementById('theme-button');
+    const darkTheme = 'dark-theme';
+    const iconTheme = 'bx-sun';
+
+    const selectedTheme = localStorage.getItem('selected-theme');
+    const selectedIcon = localStorage.getItem('selected-icon');
+
+    const getCurrentTheme = () =>
+      document.body.classList.contains(darkTheme) ? 'dark' : 'light';
+    const getCurrentIcon = () =>
+      themeButton.classList.contains(iconTheme) ? 'bx-sun' : 'bx-moon';
+
+    if (selectedTheme) {
+      document.body.classList[selectedTheme === 'dark' ? 'add' : 'remove'](darkTheme);
+      themeButton.classList[selectedIcon === 'bx-sun' ? 'add' : 'remove'](iconTheme);
+    }
+
+    themeButton.addEventListener('click', () => {
+      document.body.classList.toggle(darkTheme);
+      themeButton.classList.toggle(iconTheme);
+      localStorage.setItem('selected-theme', getCurrentTheme());
+      localStorage.setItem('selected-icon', getCurrentIcon());
+    });
+  </script>
+
+    <script>
+        const filterButtons = document.querySelectorAll('.filter-button');
+        const items = document.querySelectorAll('.menu__item');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const filter = button.getAttribute('data-filter');
+                items.forEach(item => {
+                    if (filter === 'all' || item.classList.contains(filter)) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Set Menu - Botanical Bites</title>
+
+    <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="assets/css/styles.css">
+
+    <style>
+        .menu__set {
+            margin-bottom: 3rem;
+            padding: 1rem;
+            background-color: #f7f7f7;
+            border-radius: 10px;
+            color: black;
+        }
+
+        .menu__set h3 {
+            color: #048654;
+        }
+
+        .menu__category {
+            margin-top: 1.5rem;
+        }
+
+        .menu__category h4 {
+            margin-bottom: 0.5rem;
+            text-decoration: underline;
+        }
+
+        ul.menu__list {
+            list-style: none;
+            padding-left: 1rem;
+        }
+
+        ul.menu__list li {
+            margin-bottom: 0.3rem;
+        }
+
+        .menu__price {
+            font-weight: bold;
+            color: #048654;
+        }
+    </style>
+</head>
+<body>
+    <header class="l-header" id="header">
+        <nav class="nav bd-container">
+            <a href="#" class="nav__logo">Botanical Bites <i class="fa-solid fa-spa"></i></a>
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    <li class="nav__item"><a href="index.html" class="nav__link active-link">Home</a></li>
+                    <li class="nav__item"><a href="about.html" class="nav__link">About</a></li>
+                    <li class="nav__item"><a href="#services" class="nav__link">Services</a></li>
+                    <li class="nav__item"><a href="#menu" class="nav__link">Menu</a></li>
+                    <li class="nav__item"><a href="contact.html" class="nav__link">Contact Us</a></li>
+                    <li class="nav__item"><a href="promotions.html" class="nav__link">Promotions</a></li>
+                    <li><i class='bx bx-moon change-theme' id="theme-button"></i></li>
+                </ul>
+            </div>
+            <div class="nav__toggle" id="nav-toggle">
+                <i class='bx bx-menu'></i>
+            </div>
+        </nav>
+    </header>
+
+    <section class="menu section bd-container" id="menu">
+        <span class="section-subtitle">Our Offerings</span>
+        <h2 class="section-title">Set Menus</h2>
+
+        <!-- Set Menu A -->
+        <div class="menu__set">
+            <h3>Set Menu A - <span class="menu__price">R250</span></h3>
+
+            <div class="menu__category">
+                <h4>Starters</h4>
+                <ul class="menu__list">
+                    <li>Beetroot Carpaccio – citrus vinaigrette, cashew crumble</li>
+                    <li>Grilled Baby Marrows – lemon zest and olive oil drizzle</li>
+                    <li>Roasted Red Pepper Soup – served with vegan bread</li>
+                </ul>
+            </div>
+
+            <div class="menu__category">
+                <h4>Mains</h4>
+                <ul class="menu__list">
+                    <li>Chickpea & Quinoa Buddha Bowl – tahini dressing</li>
+                    <li>Vegan Butternut Risotto – sage and almond flakes</li>
+                    <li>Stuffed Bell Peppers – wild rice, mushrooms & herbs</li>
+                </ul>
+            </div>
+
+            <div class="menu__category">
+                <h4>Desserts</h4>
+                <ul class="menu__list">
+                    <li>Chia Coconut Parfait – with seasonal fruit</li>
+                    <li>Vegan Chocolate Mousse – avocado & cacao base</li>
+                    <li>Apple & Date Crumble – with oat topping</li>
+                </ul>
+            </div>
+
+            <div class="menu__category">
+                <h4>Beverages</h4>
+                <ul class="menu__list">
+                    <li>Green Detox Juice</li>
+                    <li>Fresh Lemon & Mint Infused Water</li>
+                    <li>Ginger & Hibiscus Iced Tea</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Set Menu B -->
+        <div class="menu__set">
+            <h3>Set Menu B - <span class="menu__price">R280</span></h3>
+
+            <div class="menu__category">
+                <h4>Starters</h4>
+                <ul class="menu__list">
+                    <li>Zucchini & Sweetcorn Fritters – basil dip</li>
+                    <li>Smoked Salmon Rolls – cream cheese, dill</li>
+                    <li>Seaweed Salad – cucumber ribbons and sesame</li>
+                </ul>
+            </div>
+
+            <div class="menu__category">
+                <h4>Mains</h4>
+                <ul class="menu__list">
+                    <li>Grilled Citrus Trout – roasted baby veg</li>
+                    <li>Seafood Paella – organic rice, herbs, lemon</li>
+                    <li>Prawn Linguine – cherry tomato sauce and garlic</li>
+                </ul>
+            </div>
+
+            <div class="menu__category">
+                <h4>Desserts</h4>
+                <ul class="menu__list">
+                    <li>Matcha Avocado Cheesecake</li>
+                    <li>Baked Pear with Spiced Syrup</li>
+                    <li>Coconut Cream Tart</li>
+                </ul>
+            </div>
+
+            <div class="menu__category">
+                <h4>Beverages</h4>
+                <ul class="menu__list">
+                    <li>Berry Kombucha</li>
+                    <li>Cold-Pressed Carrot Juice</li>
+                    <li>Coconut Water with Lime</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Set Menu C -->
+        <div class="menu__set">
+            <h3>Set Menu C - <span class="menu__price">R295</span></h3>
+
+            <div class="menu__category">
+                <h4>Starters</h4>
+                <ul class="menu__list">
+                    <li>Sweet Potato & Lentil Cakes</li>
+                    <li>Biltong-Spiced Mushrooms on Toast</li>
+                    <li>Tomato & Basil Bruschetta</li>
+                </ul>
+            </div>
+
+            <div class="menu__category">
+                <h4>Mains</h4>
+                <ul class="menu__list">
+                    <li>Grilled Free-Range Chicken – pumpkin purée</li>
+                    <li>Lamb Kofta with Herb Couscous</li>
+                    <li>Beef & Veggie Skewer Plate – chimichurri dip</li>
+                </ul>
+            </div>
+
+            <div class="menu__category">
+                <h4>Desserts</h4>
+                <ul class="menu__list">
+                    <li>Apple & Cinnamon Crumble</li>
+                    <li>Banana Chocolate Tart</li>
+                    <li>Honey-Drizzled Greek Yogurt Parfait</li>
+                </ul>
+            </div>
+
+            <div class="menu__category">
+                <h4>Beverages</h4>
+                <ul class="menu__list">
+                    <li>Spiced Carrot & Orange Juice</li>
+                    <li>Rooibos Iced Tea</li>
+                    <li>Cucumber & Mint Cooler</li>
+                </ul>
+            </div>
+        </div>
+         <!-- Set Menu D -->
+        <div class="menu__set">
+            <h3>Set Menu D - <span class="menu__price">R220</span></h3>
+
+            <div class="menu__category">
+                <h4>Starters</h4>
+                <ul class="menu__list">
+                    <li>Avocado Toast – chilli flakes, microgreens</li>
+                    <li>Vegan Croissant with Almond Butter</li>
+                    <li>Overnight Oats with Nuts & Berries</li>
+                </ul>
+            </div>
+
+            <div class="menu__category">
+                <h4>Mains</h4>
+                <ul class="menu__list">
+                    <li>Spinach & Mushroom Omelette</li>
+                    <li>Vegan Breakfast Stack – grilled tofu, avo, hummus</li>
+                    <li>Shakshuka – free-range eggs, spiced tomato sauce</li>
+                </ul>
+            </div>
+
+            <div class="menu__category">
+                <h4>Desserts</h4>
+                <ul class="menu__list">
+                    <li>Mini Fruit Tart</li>
+                    <li>Lemon Poppy Muffin</li>
+                    <li>Cinnamon Banana Pancake Bites</li>
+                </ul>
+            </div>
+
+            <div class="menu__category">
+                <h4>Beverages</h4>
+                <ul class="menu__list">
+                    <li>Flat White / Cappuccino</li>
+                    <li>Fresh Pressed Orange Juice</li>
+                    <li>Botanical House Smoothie</li>
+                </ul>
+            </div>
+        </div>
+         <!-- Set Menu E -->
+        <div class="menu__set">
+            <h3>Set Menu E - <span class="menu__price">R340</span></h3>
+
+            <div class="menu__category">
+                <h4>Starters</h4>
+                <ul class="menu__list">
+                    <li>Wild Herb Salad – roasted seeds</li>
+                    <li>Creamy Cauliflower Soup</li>
+                    <li>Grilled Asparagus with Lemon Aioli</li>
+                </ul>
+            </div>
+
+            <div class="menu__category">
+                <h4>Mains</h4>
+                <ul class="menu__list">
+                    <li>Aubergine Lasagna – lentil ragu, cashew béchamel</li>
+                    <li>Pan-Seared Salmon – with fennel slaw</li>
+                    <li>Free-Range Lamb Roulade – olive & herb stuffing</li>
+                </ul>
+            </div>
+
+            <div class="menu__category">
+                <h4>Desserts</h4>
+                <ul class="menu__list">
+                    <li>Raw Cacao Brownie</li>
+                    <li>Mango Sorbet with Mint</li>
+                    <li>Almond Butter Tart</li>
+                </ul>
+            </div>
+
+            <div class="menu__category">
+                <h4>Beverages</h4>
+                <ul class="menu__list">
+                    <li>Hibiscus Botanical Iced Tea</li>
+                    <li>Elderflower Sparkling Tonic</li>
+                    <li>Green Apple & Basil Cooler</li>
+                </ul>
+            </div>
+        </div>
+         <!-- Set Menu F -->
+        <div class="menu__set">
+            <h3>Set Menu F - <span class="menu__price">R390</span></h3>
+
+            <div class="menu__category">
+                <h4>Starters</h4>
+                <ul class="menu__list">
+                    <li>Stuffed Portobello Mushrooms</li>
+                    <li>Goat Cheese & Beetroot Stack</li>
+                    <li>Spicy Cauliflower Bites</li>
+                </ul>
+            </div>
+
+            <div class="menu__category">
+                <h4>Mains</h4>
+                <ul class="menu__list">
+                    <li>Organic Fillet Medallions – truffle mash</li>
+                    <li>King Oyster Mushroom Stroganoff – creamy cashew base</li>
+                    <li>Herb Crusted Lamb – mint pea purée</li>
+                </ul>
+            </div>
+
+            <div class="menu__category">
+                <h4>Desserts</h4>
+                <ul class="menu__list">
+                    <li>Vanilla Bean Panna Cotta</li>
+                    <li>Chocolate Tart with Sea Salt</li>
+                    <li>Baked Apple with Nut Filling</li>
+                </ul>
+            </div>
+
+            <div class="menu__category">
+                <h4>Beverages</h4>
+                <ul class="menu__list">
+                    <li>Signature House Cocktail – elderflower, lime</li>
+                    <li>Lavender Lemonade</li>
+                    <li>Rosé Spritzer (Non-Alcoholic option available)</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+     <!--========== MAIN.JS LIGHT/DARK MODE ONLY ==========-->
+  <script>
+    const themeButton = document.getElementById('theme-button');
+    const darkTheme = 'dark-theme';
+    const iconTheme = 'bx-sun';
+
+    const selectedTheme = localStorage.getItem('selected-theme');
+    const selectedIcon = localStorage.getItem('selected-icon');
+
+    const getCurrentTheme = () =>
+      document.body.classList.contains(darkTheme) ? 'dark' : 'light';
+    const getCurrentIcon = () =>
+      themeButton.classList.contains(iconTheme) ? 'bx-sun' : 'bx-moon';
+
+    if (selectedTheme) {
+      document.body.classList[selectedTheme === 'dark' ? 'add' : 'remove'](darkTheme);
+      themeButton.classList[selectedIcon === 'bx-sun' ? 'add' : 'remove'](iconTheme);
+    }
+
+    themeButton.addEventListener('click', () => {
+      document.body.classList.toggle(darkTheme);
+      themeButton.classList.toggle(iconTheme);
+      localStorage.setItem('selected-theme', getCurrentTheme());
+      localStorage.setItem('selected-icon', getCurrentIcon());
+    });
+  </script>
+</body>
+</html>

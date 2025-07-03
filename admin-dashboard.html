@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin Dashboard – Botanical Bites</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f9f9f9;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      background-color: #048654;
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header h1 {
+      margin: 0;
+      font-weight: 700;
+    }
+    header button {
+      background: transparent;
+      border: 1.5px solid white;
+      border-radius: 0.5rem;
+      color: white;
+      font-weight: 600;
+      padding: 0.4rem 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    header button:hover {
+      background-color: white;
+      color: #048654;
+    }
+    main {
+      flex-grow: 1;
+      padding: 2rem;
+    }
+    nav {
+      margin-bottom: 1rem;
+      display: flex;
+      gap: 1rem;
+    }
+    nav button {
+      background-color: #ddd;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+    }
+    nav button.active {
+      background-color: #048654;
+      color: white;
+    }
+    nav button:hover:not(.active) {
+      background-color: #bbb;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 0.5rem;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    th, td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid #eee;
+      text-align: left;
+    }
+    th {
+      background-color: #048654;
+      color: white;
+      font-weight: 600;
+    }
+    tr:last-child td {
+      border-bottom: none;
+    }
+    .no-data {
+      text-align: center;
+      margin-top: 2rem;
+      font-size: 1.2rem;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Admin Dashboard</h1>
+    <button onclick="logout()">Logout</button>
+  </header>
+
+  <main>
+    <nav>
+      <button id="btn-reservations" class="active" onclick="showSection('reservations')">Reservations</button>
+      <button id="btn-orders" onclick="showSection('orders')">Orders</button>
+      <button id="btn-messages" onclick="showSection('messages')">Messages</button>
+    </nav>
+
+    <section id="reservations-section">
+      <h2>Reservations</h2>
+      <table id="reservations-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Party Size</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <p class="no-data" id="reservations-no-data" style="display:none;">No reservations found.</p>
+    </section>
+
+    <section id="orders-section" style="display:none;">
+      <h2>Orders</h2>
+      <table id="orders-table">
+        <thead>
+  <tr>
+    <th>Customer Name</th>
+    <th>Email</th>
+    <th>Items</th>
+    <th>Total (R)</th>
+    <th>Order Type</th>
+  </tr>
+</thead>
+        <tbody></tbody>
+      </table>
+      <p class="no-data" id="orders-no-data" style="display:none;">No orders found.</p>
+    </section>
+
+    <section id="messages-section" style="display:none;">
+      <h2>Messages</h2>
+      <table id="messages-table">
+        <thead>
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Message</th>
+  </tr>
+</thead>
+        <tbody></tbody>
+      </table>
+      <p class="no-data" id="messages-no-data" style="display:none;">No messages found.</p>
+    </section>
+  </main>
+
+  <script>
+    // Redirect to login if not authenticated
+    if (localStorage.getItem('adminLoggedIn') !== 'true') {
+      window.location.href = "admin-login.html";
+    }
+
+    function logout() {
+      localStorage.removeItem('adminLoggedIn');
+      window.location.href = "admin-login.html";
+    }
+
+    function showSection(section) {
+      document.getElementById('reservations-section').style.display = section === 'reservations' ? 'block' : 'none';
+      document.getElementById('orders-section').style.display = section === 'orders' ? 'block' : 'none';
+      document.getElementById('messages-section').style.display = section === 'messages' ? 'block' : 'none';
+
+      document.getElementById('btn-reservations').classList.toggle('active', section === 'reservations');
+      document.getElementById('btn-orders').classList.toggle('active', section === 'orders');
+      document.getElementById('btn-messages').classList.toggle('active', section === 'messages');
+    }
+
+    async function fetchData() {
+      try {
+        const [resReservations, resOrders, resMessages] = await Promise.all([
+          fetch('http://localhost:5000/api/reservations'),
+          fetch('http://localhost:5000/api/orders'),
+          fetch('http://localhost:5000/api/messages'),
+        ]);
+
+        const [reservations, orders, messages] = await Promise.all([
+          resReservations.json(),
+          resOrders.json(),
+          resMessages.json(),
+        ]);
+
+        populateReservations(reservations);
+        populateOrders(orders);
+        populateMessages(messages);
+      } catch (err) {
+        console.error('Error fetching admin data:', err);
+        alert('Failed to fetch admin data. Please try again later.');
+      }
+    }
+
+    function populateReservations(data) {
+      const tbody = document.querySelector('#reservations-table tbody');
+      const noData = document.getElementById('reservations-no-data');
+      tbody.innerHTML = '';
+
+      if (!data.length) {
+        noData.style.display = 'block';
+        return;
+      }
+      noData.style.display = 'none';
+
+      data.forEach(r => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${r.name}</td>
+          <td>${r.email}</td>
+          <td>${new Date(r.date).toLocaleDateString()}</td>
+          <td>${r.time}</td>
+          <td>${r.partySize}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function populateOrders(data) {
+  const tbody = document.querySelector('#orders-table tbody');
+  const noData = document.getElementById('orders-no-data');
+  tbody.innerHTML = '';
+
+  if (!data.length) {
+    noData.style.display = 'block';
+    return;
+  }
+  noData.style.display = 'none';
+
+  data.forEach(o => {
+    const items = o.items?.map(i => `${i.name} x${i.quantity} (R${i.price})`).join(', ') || '';
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>${o.name}</td>
+      <td>${o.email}</td>
+      <td>${items}</td>
+      <td>${o.total}</td>
+      <td>${o.method}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+
+    function populateMessages(data) {
+  const tbody = document.querySelector('#messages-table tbody');
+  const noData = document.getElementById('messages-no-data');
+  tbody.innerHTML = '';
+
+  if (!data.length) {
+    noData.style.display = 'block';
+    return;
+  }
+  noData.style.display = 'none';
+
+  data.forEach(m => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>${m.name}</td>
+      <td>${m.email}</td>
+      <td>${m.message}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+    fetchData();
+  </script>
+
+</body>
+</html>

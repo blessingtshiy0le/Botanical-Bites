@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Page - Botanical Bites</title>
+
+    <!--========== BOX ICONS ==========-->
+    <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+
+    <!--========== CSS ==========-->
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        .menu__items {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* 2 columns */
+            gap: 2rem;
+            margin-bottom: 2rem;
+            color: black;
+        }
+
+        .menu__item {
+            background-color: #fff;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+
+        .menu__item:hover {
+            transform: scale(1.03);
+        }
+
+        .menu__item h3 {
+            color: #048654;
+            margin-bottom: 1rem;
+        }
+
+        .menu__item p {
+            margin: 0.5rem 0;
+            font-size: 0.95rem;
+        }
+
+        .menu__filters {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .filter-button {
+            background-color: #eee;
+            border: none;
+            padding: 0.5rem 1rem;
+            margin: 0 0.5rem;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .filter-button:hover {
+            background-color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <header class="l-header" id="header">
+        <nav class="nav bd-container">
+            <a href="#" class="nav__logo">Botanical Bites <i class="fa-solid fa-spa"></i></a>
+
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    <li class="nav__item"><a href="index.html" class="nav__link active-link">Home</a></li>
+                    <li class="nav__item"><a href="about.html" class="nav__link">About</a></li>
+                    <li class="nav__item"><a href="#services" class="nav__link">Services</a></li>
+                    <li class="nav__item"><a href="#menu" class="nav__link">Menu</a></li>
+                    <li class="nav__item"><a href="contact.html" class="nav__link">Contact Us</a></li>
+                    <li class="nav__item"><a href="promotions.html" class="nav__link">Promotions</a></li>
+                    <li><i class='bx bx-moon change-theme' id="theme-button"></i></li>
+                </ul>
+            </div>
+
+            <div class="nav__toggle" id="nav-toggle">
+                <i class='bx bx-menu'></i>
+            </div>
+        </nav>
+    </header>
+
+    <section class="menu section bd-container" id="menu">
+        <span class="section-subtitle">Special Menu</span>
+        <h2 class="section-title">Platter Menu</h2>
+
+        <div class="menu__items">
+            <div class="menu__item">
+                <h3>Garden Harvest Platter – R320</h3>
+                <p><strong>Grilled Veggie Skewers:</strong> Marinated seasonal vegetables char-grilled to perfection.</p>
+                <p><strong>Mini Hummus Bowls:</strong> Beetroot, basil, and classic chickpea hummus served with raw veggie sticks.</p>
+                <p><strong>Zucchini Fritters:</strong> Lightly fried and herb-infused, served with coconut yogurt dip.</p>
+                <p><strong>Stuffed Cherry Tomatoes:</strong> Filled with herbed quinoa and cashew cream.</p>
+            </div>
+
+            <div class="menu__item">
+                <h3>Rustic Organic Platter – R390</h3>
+                <p><strong>Goat Cheese Medallions:</strong> Soft, herbed cheese rounds drizzled with honey.</p>
+                <p><strong>Seeded Crackers:</strong> Gluten-free crackers with chia, sesame, and flaxseeds.</p>
+                <p><strong>Baked Baby Potatoes:</strong> Tossed in olive oil, rosemary, and sea salt.</p>
+                <p><strong>Olive & Sundried Tomato Tapenade:</strong> A savory spread for crackers and cheese.</p>
+            </div>
+
+            <div class="menu__item">
+                <h3>Wholesome Wraps Platter – R350</h3>
+                <p><strong>Falafel Wraps:</strong> Crispy chickpea patties with slaw and tahini dressing.</p>
+                <p><strong>Grilled Chicken Wraps:</strong> Organic chicken with avocado and leafy greens.</p>
+                <p><strong>Tofu Teriyaki Wraps:</strong> Marinated tofu, shredded carrots, and sesame glaze.</p>
+                <p><strong>Spinach Tortillas:</strong> All wraps served on spinach-based tortillas.</p>
+            </div>
+
+            <div class="menu__item">
+                <h3>Afro-Fusion Finger Food Platter – R375</h3>
+                <p><strong>Chakalaka Falafel Balls:</strong> South African spice blend meets Middle Eastern flair.</p>
+                <p><strong>Mini Pap Cakes:</strong> Layered with sautéed spinach and tomato relish.</p>
+                <p><strong>Butternut Bites:</strong> Roasted cubes drizzled with cinnamon and agave.</p>
+                <p><strong>Spicy Lentil Samoosas:</strong> Served with coriander-mint dip.</p>
+            </div>
+
+            <div class="menu__item">
+                <h3>Mediterranean Delight Platter – R410</h3>
+                <p><strong>Stuffed Grape Leaves:</strong> With lemon-herbed rice and fresh herbs.</p>
+                <p><strong>Mini Pita Pockets:</strong> Filled with falafel, tzatziki and slaw.</p>
+                <p><strong>Roasted Red Pepper Dip:</strong> Creamy and smoky, served with baked pita chips.</p>
+                <p><strong>Cucumber-Feta Salad Cups:</strong> Topped with kalamata olives and mint.</p>
+            </div>
+
+            <div class="menu__item">
+                <h3>Sweet Indulgence Platter – R290</h3>
+                <p><strong>Raw Cocoa Truffles:</strong> Made with dates, cocoa, and coconut flakes.</p>
+                <p><strong>Mini Chia Puddings:</strong> Vanilla-berry, matcha, and cacao flavors.</p>
+                <p><strong>Fruit Skewers:</strong> Seasonal fruit drizzled with agave and lime zest.</p>
+                <p><strong>Almond Butter Bites:</strong> Rolled in oats and dipped in dark chocolate.</p>
+            </div>
+        </div>
+    </section>
+     <!--========== MAIN.JS LIGHT/DARK MODE ONLY ==========-->
+  <script>
+    const themeButton = document.getElementById('theme-button');
+    const darkTheme = 'dark-theme';
+    const iconTheme = 'bx-sun';
+
+    const selectedTheme = localStorage.getItem('selected-theme');
+    const selectedIcon = localStorage.getItem('selected-icon');
+
+    const getCurrentTheme = () =>
+      document.body.classList.contains(darkTheme) ? 'dark' : 'light';
+    const getCurrentIcon = () =>
+      themeButton.classList.contains(iconTheme) ? 'bx-sun' : 'bx-moon';
+
+    if (selectedTheme) {
+      document.body.classList[selectedTheme === 'dark' ? 'add' : 'remove'](darkTheme);
+      themeButton.classList[selectedIcon === 'bx-sun' ? 'add' : 'remove'](iconTheme);
+    }
+
+    themeButton.addEventListener('click', () => {
+      document.body.classList.toggle(darkTheme);
+      themeButton.classList.toggle(iconTheme);
+      localStorage.setItem('selected-theme', getCurrentTheme());
+      localStorage.setItem('selected-icon', getCurrentIcon());
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin Dashboard – Botanical Bites</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f9f9;
+      margin: 0; padding: 0;
+    }
+    .container {
+      max-width: 900px;
+      margin: 2rem auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    h2 {
+      color: #048654;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+    form {
+      max-width: 400px;
+      margin: 0 auto 2rem auto;
+    }
+    input[type="text"], input[type="password"] {
+      width: 100%;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+      border-radius: 0.3rem;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+    button {
+      width: 100%;
+      padding: 0.7rem;
+      background-color: #048654;
+      color: white;
+      border: none;
+      border-radius: 0.3rem;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #037147;
+    }
+    .error {
+      color: red;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    .section {
+      margin-top: 2rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 2rem;
+    }
+    table, th, td {
+      border: 1px solid #ddd;
+    }
+    th, td {
+      padding: 0.5rem;
+      text-align: left;
+    }
+    th {
+      background-color: #048654;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Admin Login</h2>
+    <form id="loginForm">
+      <input type="text" id="username" placeholder="Username" required />
+      <input type="password" id="password" placeholder="Password" required />
+      <div class="error" id="loginError"></div>
+      <button type="submit">Login</button>
+    </form>
+
+    <div id="dashboard" style="display:none;">
+      <h2>Dashboard</h2>
+
+      <section class="section">
+        <h3>Reservations</h3>
+        <table id="reservationsTable">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Date</th>
+              <th>Time</th>
+              <th>Party Size</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </section>
+
+      <section class="section">
+        <h3>Orders</h3>
+        <table id="ordersTable">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Items</th>
+              <th>Total</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </section>
+
+      <section class="section">
+        <h3>Messages</h3>
+        <table id="messagesTable">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Message</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </section>
+    </div>
+  </div>
+
+  <script>
+    const loginForm = document.getElementById('loginForm');
+    const loginError = document.getElementById('loginError');
+    const dashboard = document.getElementById('dashboard');
+
+    loginForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      loginError.textContent = '';
+
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value;
+
+      try {
+        const res = await fetch('http://localhost:5000/api/admin/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password })
+        });
+
+        const data = await res.json();
+
+        if (res.ok && data.success) {
+          loginForm.style.display = 'none';
+          dashboard.style.display = 'block';
+          fetchData();
+        } else {
+          loginError.textContent = data.message || 'Login failed';
+        }
+      } catch (error) {
+        loginError.textContent = 'Server error. Try again later.';
+      }
+    });
+
+    async function fetchData() {
+      await fetchReservations();
+      await fetchOrders();
+      await fetchMessages();
+    }
+
+    async function fetchReservations() {
+      const res = await fetch('http://localhost:5000/api/reservations');
+      const data = await res.json();
+
+      const tbody = document.querySelector('#reservationsTable tbody');
+      tbody.innerHTML = '';
+
+      data.forEach(item => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${item.name}</td>
+          <td>${item.email}</td>
+          <td>${new Date(item.date).toLocaleDateString()}</td>
+          <td>${item.time}</td>
+          <td>${item.partySize}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    async function fetchOrders() {
+      const res = await fetch('http://localhost:5000/api/orders');
+      const data = await res.json();
+
+      const tbody = document.querySelector('#ordersTable tbody');
+      tbody.innerHTML = '';
+
+      data.forEach(item => {
+        const tr = document.createElement('tr');
+        const itemsList = item.items ? item.items.map(i => `${i.name} (x${i.quantity})`).join(', ') : '-';
+        tr.innerHTML = `
+          <td>${item.name || '-'}</td>
+          <td>${item.email || '-'}</td>
+          <td>${itemsList}</td>
+          <td>${item.total || '-'}</td>
+          <td>${new Date(item.createdAt).toLocaleString()}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    async function fetchMessages() {
+      const res = await fetch('http://localhost:5000/api/messages');
+      const data = await res.json();
+
+      const tbody = document.querySelector('#messagesTable tbody');
+      tbody.innerHTML = '';
+
+      data.forEach(item => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${item.name}</td>
+          <td>${item.email}</td>
+          <td>${item.message}</td>
+          <td>${new Date(item.createdAt).toLocaleString()}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+  </script>
+</body>
+</html>

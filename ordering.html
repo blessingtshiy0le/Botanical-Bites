@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Menu Page - Botanical Bites</title>
+
+    <!--========== BOX ICONS ==========-->
+    <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet' />
+
+    <!--========== CSS ==========-->
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+
+    <style>
+      /* --- Keep your existing styles --- */
+
+      .order-page {
+        padding: 2rem;
+        max-width: 1200px;
+        margin: auto;
+      }
+
+      .menu-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+      }
+
+      .menu-block {
+        background-color: #fff;
+        border-radius: 1rem;
+        padding: 1.5rem;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .menu-block h3 {
+        text-align: center;
+        color: #048654;
+        margin-bottom: 1rem;
+      }
+
+      .menu-item {
+        margin-bottom: 1rem;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 0.5rem;
+      }
+
+      .menu-item h4 {
+        margin: 0;
+        font-size: 1.1rem;
+        color: #333;
+      }
+
+      .menu-item p {
+        font-size: 0.9rem;
+        color: #666;
+      }
+
+      .menu-item button {
+        margin-top: 0.5rem;
+        padding: 0.4rem 1rem;
+        background-color: #048654;
+        color: #fff;
+        border: none;
+        border-radius: 0.3rem;
+        cursor: pointer;
+      }
+
+      /* Cart Section moved to top right with fixed position */
+      .cart-icon {
+        position: fixed;
+        top: 15px;
+        right: 15px;
+        background-color: #ffffff;
+        color: #000000;
+        padding: 10px 15px;
+        border-radius: 50px;
+        cursor: pointer;
+        z-index: 1000;
+        color: black;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .cart-count {
+        background: #ffffff;
+        border-radius: 50%;
+        padding: 2px 7px;
+        font-size: 0.9rem;
+        font-weight: bold;
+        color: #000000;
+        min-width: 20px;
+        text-align: center;
+      }
+
+      .cart-dropdown {
+        position: fixed;
+        top: 60px;
+        right: 15px;
+        width: 300px;
+        max-height: 400px;
+        overflow-y: auto;
+        color: black;
+        background: #f9f9f9;
+        border-radius: 1rem;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        padding: 1rem;
+        display: none;
+        z-index: 1000;
+      }
+
+      .cart-item {
+        font-size: 0.95rem;
+        padding: 0.3rem 0;
+        display: flex;
+        color: black;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .cart-item span {
+        font-weight: bold;
+      }
+
+      .cart-item button {
+        background-color: #048654;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        padding: 3px 6px;
+        cursor: pointer;
+      }
+
+      .cart-total {
+        font-weight: bold;
+        margin-top: 10px;
+        text-align: right;
+        color: black;
+      }
+
+      .checkout-button {
+        margin-top: 1rem;
+        width: 100%;
+        padding: 0.75rem;
+        background-color: #048654;
+        color: white;
+        border: none;
+        border-radius: 0.5rem;
+        cursor: pointer;
+      }
+
+      /* Modal styles */
+      .modal {
+        display: none; /* Hidden by default */
+        position: fixed;
+        z-index: 1500;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.5);
+      }
+
+      .modal-content {
+        background-color: #fefefe;
+        margin: 10% auto;
+        padding: 20px;
+        border-radius: 10px;
+        width: 320px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      }
+
+      .modal-content h3 {
+        margin-bottom: 15px;
+        color: #048654;
+      }
+
+      .modal-content label {
+        display: block;
+        margin: 10px 0 5px;
+      }
+
+      .modal-content input,
+      .modal-content select {
+        width: 100%;
+        padding: 8px;
+        box-sizing: border-box;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+      }
+
+      .modal-content button {
+        margin-top: 15px;
+        background-color: #048654;
+        color: white;
+        border: none;
+        padding: 10px;
+        border-radius: 5px;
+        width: 100%;
+        cursor: pointer;
+      }
+
+      .modal-close {
+        float: right;
+        font-size: 20px;
+        cursor: pointer;
+        color: #999;
+      }
+
+      .modal-close:hover {
+        color: #048654;
+      }
+    </style>
+    
+</head>
+
+<body>
+
+  <header class="l-header" id="header">
+            <nav class="nav bd-container">
+                <a href="#" class="nav__logo">Botanical Bites <i class="fa-solid fa-spa"></i></a>
+
+                <div class="nav__menu" id="nav-menu">
+                    <ul class="nav__list">
+                        <li class="nav__item"><a href="index.html" class="nav__link active-link">Home</a></li>
+                        <li class="nav__item"><a href="about.html" class="nav__link">About</a></li>
+                        <li class="nav__item"><a href="#services" class="nav__link">Services</a></li>
+                        <li class="nav__item"><a href="#menu" class="nav__link">Menu</a></li>
+                        <li class="nav__item"><a href="contact.html" class="nav__link">Contact Us</a></li>
+                        <li class="nav__item"><a href="promotions.html" class="nav__link">Promotions</a></li>
+
+                        <li><i class='bx bx-moon change-theme' id="theme-button"></i></li>
+                    </ul>
+                </div>
+
+                <div class="nav__toggle" id="nav-toggle">
+                    <i class='bx bx-menu'></i>
+                </div>
+            </nav>
+        </header>
+
+  <!-- Cart icon in top right -->
+  <div class="cart-icon" id="cart-icon" title="View Cart">
+    <i class="fas fa-shopping-cart"></i>
+    <span class="cart-count" id="cart-count">0</span>
+  </div>
+
+  <!-- Cart dropdown -->
+  <div class="cart-dropdown" id="cart-dropdown">
+    <h3>🛒 Your Cart</h3>
+    <div id="cart-items">
+      <p>Your cart is empty.</p>
+    </div>
+    <button class="checkout-button" id="checkout-btn">Proceed to Payment</button>
+  </div>
+
+  <main class="order-page">
+    <h2 style="text-align: center; margin-bottom: 2rem; color: #048654; margin-top: 3.5rem;">
+      Schedule a Delivery
+    </h2>
+
+    <div class="menu-grid">
+      <!-- A la Carte Menu Block -->
+      <div class="menu-block">
+        <h3>A la Carte - Starters</h3>
+        <div class="menu-item">
+          <h4>Avocado & Microgreens Toast</h4>
+          <p>Toasted sourdough topped with smashed avocado, cherry tomatoes & microgreens. - R68</p>
+          <button onclick="addToCart('Avocado & Microgreens Toast', 68)">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+          <h4>Beetroot Carpaccio</h4>
+          <p>Thin beetroot slices, citrus vinaigrette, rocket & cashew crumble. - R75</p>
+          <button onclick="addToCart('Beetroot Carpaccio', 75)">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+          <h4>Sweet Potato & Lentil Cakes</h4>
+          <p>Golden brown patties with spiced lentils, served with mint yoghurt. - R70</p>
+          <button onclick="addToCart('Sweet Potato & Lentil Cakes', 70)">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+          <h4>Zucchini Fritters</h4>
+          <p>Pan-fried with flax meal, served with basil lemon dip. - R60</p>
+          <button onclick="addToCart('Zucchini Fritters', 60)">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+          <h4>Butternut Soup Shots</h4>
+          <p>Creamy butternut served in espresso cups with coconut cream swirl. - R50</p>
+          <button onclick="addToCart('Butternut Soup Shots', 50)">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+          <h4>Crispy Kale Chips & Hummus Dip</h4>
+          <p>Lightly salted kale chips served with roasted garlic hummus. - R55</p>
+          <button onclick="addToCart('Crispy Kale Chips & Hummus Dip', 55)">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="menu-block">
+        <h3>A la Carte - Mains</h3>
+        <div class="menu-item">
+          <h4>Chickpea & Quinoa Buddha Bowl</h4>
+          <p>Chickpeas, roasted veggies, kale, tahini dressing. - R120</p>
+          <button onclick="addToCart('Chickpea & Quinoa Buddha Bowl', 120)">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+          <h4>Cauliflower Steak with Herb Oil</h4>
+          <p>Grilled, served with a lemon chimichurri sauce and microgreens. - R110</p>
+          <button onclick="addToCart('Cauliflower Steak with Herb Oil', 110)">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+          <h4>Stuffed Bell Peppers</h4>
+          <p>Brown rice, black beans, tomatoes & guacamole. - R98</p>
+          <button onclick="addToCart('Stuffed Bell Peppers', 98)">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+          <h4>Butternut Risotto</h4>
+          <p>Creamy arborio rice with roasted butternut and vegan parmesan. - R105</p>
+          <button onclick="addToCart('Butternut Risotto', 105)">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+          <h4>Aubergine Lasagna</h4>
+          <p>Layers of grilled eggplant, lentil ragu, and cashew béchamel. - R115</p>
+          <button onclick="addToCart('Aubergine Lasagna', 115)">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+          <h4>Wild Mushroom Stroganoff</h4>
+          <p>Earthy mushroom blend in a dairy-free creamy sauce with wholegrain pasta. - R120</p>
+          <button onclick="addToCart('Wild Mushroom Stroganoff', 120)">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="menu-block">
+        <h3>A la Carte - Mains</h3>
+        <div class="menu-item">
+          <h4>Lemon-Herb Grilled Trout</h4>
+          <p>Trout fillet with roasted veggies & citrus glaze. - R145</p>
+          <button onclick="addToCart('Lemon-Herb Grilled Trout', 145)">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+          <h4>Free-Range Chicken Fillet with Pumpkin Puree</h4>
+          <p>Grilled breast, rosemary oil drizzle, served with seasonal greens. - R135</p>
+          <button onclick="addToCart('Free-Range Chicken Fillet with Pumpkin Puree', 135)">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+          <h4>Grass-Fed Beef & Avocado Stack</h4>
+          <p>Seared medallions layered with avocado mousse & tomato relish. - R155</p>
+          <button onclick="addToCart('Grass-Fed Beef & Avocado Stack', 155)">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+          <h4>Grilled Prawn & Mango Salsa Bowl</h4>
+          <p>Lightly spiced prawns served over brown rice and mango salad. - R160</p>
+          <button onclick="addToCart('Grilled Prawn & Mango Salsa Bowl', 160)">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+          <h4>Organic Chicken & Quinoa Stir-Fry</h4>
+          <p>Stir-fried with garden vegetables in tamari sauce. - R130</p>
+          <button onclick="addToCart('Organic Chicken & Quinoa Stir-Fry', 130)">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+          <h4>Herbed Lamb Chops with Mint Pea Puree</h4>
+          <p>Grass-fed lamb grilled and paired with a minty puree. - R165</p>
+          <button onclick="addToCart('Herbed Lamb Chops with Mint Pea Puree', 165)">Add to Cart</button>
+        </div> 
+      </div>
+
+      <div class="menu-block">
+        <h3>A la Carte - Bowls & Wraps</h3>
+        <div class="menu-item">
+          <h4>Green Power Wrap</h4>
+          <p>Spinach tortilla with hummus, carrot, avo, cucumber, and sprouts. - R95</p>
+          <button onclick="addToCart('Green Power Wrap', 95)">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+          <h4>Raw Zucchini Noodle Bowl</h4>
+          <p>Zoodles in creamy cashew pesto, cherry tomatoes, and seeds. - R105</p>
+          <button onclick="addToCart('Raw Zucchini Noodle Bowl', 105)">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+          <h4>Tempeh & Wild Rice Bowl</h4>
+          <p>Grilled tempeh, edamame, sesame, radish & tamari glaze. - R115</p>
+          <button onclick="addToCart('Tempeh & Wild Rice Bowl', 115)">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+          <h4>Rainbow Falafel Wrap</h4>
+          <p>Beetroot, spinach & pumpkin falafels in a wholewheat wrap with tahini. - R90</p>
+          <button onclick="addToCart('Rainbow Falafel Wrap', 90)">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+          <h4>Vegan Pad Thai Bowl</h4>
+          <p>Rice noodles with tofu, peanuts, spring onion, and lime. - R110</p>
+          <button onclick="addToCart('Vegan Pad Thai Bowl', 110)">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+          <h4>Roasted Veg & Avo Wrap</h4>
+          <p>Grilled peppers, baby marrow, red onion, and guacamole in a gluten-free wrap. - R92</p>
+          <button onclick="addToCart('Roasted Veg & Avo Wrap', 92)">Add to Cart</button>
+        </div>
+      </div>
+      <div class="menu-block">
+        <h3>A la Carte - Desserts</h3>
+        <div class="menu-item">
+          <h4>Chia & Coconut Parfait</h4>
+          <p>Coconut milk chia pudding layered with fruit & nut granola. - R55</p>
+          <button onclick="addToCart('Chia & Coconut Parfait', 55)">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+          <h4>Raw Cacao Brownie</h4>
+          <p>Gluten-free, made with cacao, dates, and almond flour. - R45</p>
+          <button onclick="addToCart('Raw Cacao Brownie', 45)">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+          <h4>Matcha Avocado Cheesecake</h4>
+          <p>No-bake, creamy and rich with earthy matcha tones. - R60</p>
+          <button onclick="addToCart('Matcha Avocado Cheesecake', 60)">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+          <h4>Vegan Banana Bread Slice</h4>
+          <p>Moist, nutty, made with coconut sugar and almond milk. - R40</p>
+          <button onclick="addToCart('Vegan Banana Bread Slice', 40)">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+          <h4>Chocolate Avocado Mousse</h4>
+          <p>Rich mousse made with ripe avocado and organic cocoa. - R50</p>
+          <button onclick="addToCart('Chocolate Avocado Mousse', 50)">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+          <h4>Apple & Cinnamon Crumble</h4>
+          <p>Warm stewed apples topped with an oat-almond crust, served with coconut cream. - R58</p>
+          <button onclick="addToCart('Apple & Cinnamon Crumble', 58)">Add to Cart</button>
+        </div>
+      </div>
+      <div class="menu-block">
+        <h3>A la Carte - Drinks</h3>
+        <div class="menu-item">
+          <h4>Green Detox Juice</h4>
+          <p>Kale, cucumber, green apple, mint & lemon. - R48</p>
+          <button onclick="addToCart('Green Detox Juice', 48)">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+          <h4>Golden Turmeric Latte (Oat Milk)</h4>
+          <p>Calming turmeric blend with cinnamon and oat milk. - R42</p>
+          <button onclick="addToCart('Golden Turmeric Latte (Oat Milk)', 42)">Add to Cart</button>
+        </div>
+         <div class="menu-item">
+          <h4>Botanical Iced Tea</h4>
+          <p>Hibiscus, rooibos & rose petals served over ice. - R38</p>
+          <button onclick="addToCart('Botanical Iced Tea', 38)">Add to Cart</button>
+        </div>
+         <div class="menu-item">
+          <h4>Berry Kombucha (House Brewed)</h4>
+          <p>Lightly fizzy, fermented tea with mixed berries. - R50</p>
+          <button onclick="addToCart('Berry Kombucha (House Brewed)', 50)">Add to Cart</button>
+        </div>
+         <div class="menu-item">
+          <h4>Spiced Carrot & Orange Juice</h4>
+          <p>Cold-pressed carrots, orange, ginger, and a touch of turmeric. - R44</p>
+          <button onclick="addToCart('Spiced Carrot & Orange Juice', 44)">Add to Cart</button>
+        </div>
+         <div class="menu-item">
+          <h4>Coconut Water & Lime</h4>
+          <p>Chilled coconut water served with a squeeze of lime. - R35</p>
+          <button onclick="addToCart('Coconut Water & Lime', 35)">Add to Cart</button>
+        </div>
+      </div>
+      <div class="menu-block">
+        <h3>Platter Menu</h3>
+        <div class="menu-item">
+          <h4>Garden Harvest Platter</h4>
+          <p>Grilled Veggie Skewers, Mini Hummus Bowls, Zucchini Fritters & Stuffed Cherry Tomatoes - R320</p>
+          <button onclick="addToCart('Garden Harvest Platter', 320)">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+          <h4>Rustic Organic Platter</h4>
+          <p>Goat Cheese Medallions, Seeded Crackers, Baked Baby Potatoes & Olive & Sundried Tomato Tapenade -  R390</p>
+          <button onclick="addToCart('Rustic Organic Platter', 390)">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+          <h4>Wholesome Wraps Platter</h4>
+          <p>Falafel Wraps, Grilled Chicken Wraps, Tofu Teriyaki Wraps & Spinach Tortillas -  R350</p>
+          <button onclick="addToCart('Wholesome Wraps Platter', 350)">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+          <h4>Afro-Fusion Finger Food Platter</h4>
+          <p>Chakalaka Falafel Balls, Butternut Bites, Mini Pap Cakes & Spicy Lentil Samoosas -  R375</p>
+          <button onclick="addToCart('Afro-Fusion Finger Food Platter', 375)">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+          <h4>Mediterranean Delight Platter</h4>
+          <p>Stuffed Grape Leaves, Mini Pita Pockets, Roasted Red Pepper Dip & Cucumber-Feta Salad Cups -  R410</p>
+          <button onclick="addToCart('Mediterranean Delight Platter', 410)">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+          <h4>Sweet Indulgence Platter</h4>
+          <p>Raw Cocoa Truffles, Mini Chia Puddings, Fruit Skewers & Almond Butter Bites -  R290</p>
+          <button onclick="addToCart('Sweet Indulgence Platter', 290)">Add to Cart</button>
+        </div>
+      </div>
+
+      <!-- Promotions Menu Block -->
+      <div class="menu-block">
+        <h3>Seasonal Specials + Chef's Signature Deals</h3>
+        <div class="menu-item">
+          <h4>Autumn Harvest Bowl - R20 Off this month!</h4>
+          <p>Roasted butternut, baby spinach, wild rice, toasted seeds, and tahini dressing. - R90</p>
+          <button onclick="addToCart('Autumn Harvest Bowl - R20 Off this month!', 90)">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+          <h4>Spring Pea Risotto - New! Limited-time Spring Feature</h4>
+          <p>Creamy risotto with fresh peas, mint, lemon zest, and shaved parmesan. - R115</p>
+          <button onclick="addToCart('Spring Pea Risotto - New! Limited-time Spring Feature', 115)">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+          <h4>Winter Root Veggie Roast - Buy 1, Get 50% Off the 2nd</h4>
+          <p>Beetroot, carrots, parsnips with rosemary & garlic olive oil. - R98</p>
+          <button onclick="addToCart('Winter Root Veggie Roast - Buy 1, Get 50% Off the 2nd', 98)">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+          <h4>Lindi’s Lemon-Herb Chicken - Get a Free Fresh Juice with This Dish</h4>
+          <p>Grilled free-range chicken breast, lemon-thyme glaze, baby potatoes. - R130</p>
+          <button onclick="addToCart('Lindi’s Lemon-Herb Chicken - Get a Free Fresh Juice with This Dish', 130)">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+          <h4>Thabiso’s Green Curry Quinoa Bowl - R25 Off | Chef’s Pick of the Week</h4>
+          <p>Coconut green curry with organic veggies over tri-color quinoa. - R125</p>
+          <button onclick="addToCart('Thabiso’s Green Curry Quinoa Bowl - R25 Off | Chef’s Pick of the Week', 125)">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+          <h4>Farm-to-Table Pasta - Gluten-Free Option | Save R15</h4>
+          <p>Hand-cut spinach pasta, roasted heirloom tomatoes, vegan basil cream. - R110</p>
+          <button onclick="addToCart('Farm-to-Table Pasta - Gluten-Free Option | Save R15', 110)">Add to Cart</button>
+        </div>
+      </div>
+
+      <!-- Seasonal Menu Block -->
+      <div class="menu-block">
+        <h3>Detox & Wellness Boosts + Combo Deals</h3>
+        <div class="menu-item">
+          <h4>Immunity Booster Broth - Immunity Deal: Add Ginger Shot for R10</h4>
+          <p>Turmeric-ginger bone broth with seasonal greens and soba noodles. - R72</p>
+          <button onclick="addToCart('Detox & Wellness Boosts + Combo Deals', 72)">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+          <h4>Glow-Up Salad - 10% Off All Week</h4>
+          <p>Kale, blueberries, avo, chickpeas, flax seeds, cider vinaigrette. - R85</p>
+          <button onclick="addToCart('Glow-Up Salad - 10% Off All Week', 85)">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+          <h4>Hydrating Cucumber Gazpacho - Free Detox Water with Order</h4>
+          <p>Chilled cucumber and mint soup with lime. - R70</p>
+          <button onclick="addToCart('Hydrating Cucumber Gazpacho - Free Detox Water with Order', 70)">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+          <h4>Green Goddess Wrap Combo - Buy 1 Combo, Get the 2nd for R50</h4>
+          <p>Organic wrap with hummus, avo, cucumbers + mint lemonade. - R105</p>
+          <button onclick="addToCart('Green Goddess Wrap Combo - Buy 1 Combo, Get the 2nd for R50', 105)">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+          <h4>Burger & Bites Deal - Free Mini Dessert with This Combo</h4>
+          <p>Chickpea burger, sweet potato wedges + iced rooibos. - R115</p>
+          <button onclick="addToCart('Burger & Bites Deal - Free Mini Dessert with This Combo', 115)">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+          <h4>Soup & Salad Duo - Save R20 When Ordered</h4>
+          <p>Butternut soup + beetroot & feta salad with rye crispbread. - R95</p>
+          <button onclick="addToCart('Soup & Salad Duo - Save R20 When Ordered', 95)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Modal for Delivery/Pickup -->
+<div id="order-modal" class="modal" aria-hidden="true" aria-labelledby="modalTitle" role="dialog">
+  <div class="modal-content">
+    <span class="modal-close" id="modal-close">&times;</span>
+
+    <!-- Step 1: Choose Delivery or Pickup -->
+    <div id="modal-step-1">
+      <h3 id="modalTitle">Would you like to schedule a Delivery or a Pick Up?</h3>
+      <button onclick="selectOption('delivery')" style="margin-right:10px;">Delivery</button>
+      <button onclick="selectOption('pickup')">Pick Up</button>
+    </div>
+
+    <!-- Step 2a: Delivery Form -->
+    <div id="modal-delivery" style="display: none;">
+      <h3>Delivery Details</h3>
+      <label for="delivery-name">Name</label>
+      <input type="text" id="delivery-name" placeholder="Your full name" />
+
+      <label for="delivery-email">Email</label>
+      <input type="email" id="delivery-email" placeholder="Email address" />
+
+      <label for="delivery-address">Address</label>
+      <input type="text" id="delivery-address" placeholder="Delivery address" />
+
+      <label for="delivery-phone">Phone Number</label>
+      <input type="tel" id="delivery-phone" placeholder="Phone number" />
+
+      <button onclick="processCheckout('delivery')">Pay Now</button>
+    </div>
+
+    <!-- Step 2b: Pickup Form -->
+    <div id="modal-pickup" style="display: none;">
+      <h3>Pick Up Branch</h3>
+      <label for="pickup-name">Name</label>
+      <input type="text" id="pickup-name" placeholder="Your full name" />
+
+      <label for="pickup-email">Email</label>
+      <input type="email" id="pickup-email" placeholder="Email address" />
+
+      <label for="pickup-branch">Select Branch</label>
+      <select id="pickup-branch">
+        <option value="" disabled selected>Select branch</option>
+        <option value="Bryanston">Bryanston</option>
+        <option value="Waterfall">Waterfall</option>
+        <option value="Hazlewood">Hazlewood</option>
+      </select>
+
+      <button onclick="processCheckout('pickup')">Pay Now</button>
+    </div>
+  </div>
+</div>
+
+<!-- Scripts -->
+<script>
+  // Theme toggle logic (unchanged)
+  const themeButton = document.getElementById('theme-button');
+  const darkTheme = 'dark-theme';
+  const iconTheme = 'bx-sun';
+
+  const selectedTheme = localStorage.getItem('selected-theme');
+  const selectedIcon = localStorage.getItem('selected-icon');
+
+  const getCurrentTheme = () => document.body.classList.contains(darkTheme) ? 'dark' : 'light';
+  const getCurrentIcon = () => themeButton.classList.contains(iconTheme) ? 'bx-sun' : 'bx-moon';
+
+  if (selectedTheme) {
+    document.body.classList[selectedTheme === 'dark' ? 'add' : 'remove'](darkTheme);
+    themeButton.classList[selectedIcon === 'bx-sun' ? 'add' : 'remove'](iconTheme);
+  }
+
+  themeButton.addEventListener('click', () => {
+    document.body.classList.toggle(darkTheme);
+    themeButton.classList.toggle(iconTheme);
+    localStorage.setItem('selected-theme', getCurrentTheme());
+    localStorage.setItem('selected-icon', getCurrentIcon());
+  });
+
+  // Cart Logic
+  const cart = [];
+  const cartIcon = document.getElementById("cart-icon");
+  const cartCount = document.getElementById("cart-count");
+  const cartDropdown = document.getElementById("cart-dropdown");
+  const cartItemsDiv = document.getElementById("cart-items");
+  const checkoutBtn = document.getElementById("checkout-btn");
+
+  function addToCart(item, price) {
+    cart.push({ item, price });
+    updateCart();
+    cartDropdown.style.display = "block";
+  }
+
+  function updateCart() {
+    cartCount.textContent = cart.length;
+    if (cart.length === 0) {
+      cartItemsDiv.innerHTML = "<p>Your cart is empty.</p>";
+      checkoutBtn.disabled = true;
+      return;
+    }
+    checkoutBtn.disabled = false;
+
+    let total = 0;
+    let html = "";
+    cart.forEach((entry, index) => {
+      html += `
+        <div class="cart-item">
+          <span>${entry.item}</span> - R${entry.price.toFixed(2)}
+          <button onclick="removeFromCart(${index})">×</button>
+        </div>`;
+      total += entry.price;
+    });
+    html += `<div class="cart-total">Total: R${total.toFixed(2)}</div>`;
+    cartItemsDiv.innerHTML = html;
+  }
+
+  function removeFromCart(index) {
+    cart.splice(index, 1);
+    updateCart();
+  }
+
+  cartIcon.addEventListener("click", () => {
+    cartDropdown.style.display = cartDropdown.style.display === "block" ? "none" : "block";
+  });
+
+  checkoutBtn.addEventListener("click", () => {
+    if (cart.length === 0) return alert("Cart is empty.");
+    openModal();
+  });
+
+  // Modal Logic
+  const modal = document.getElementById("order-modal");
+  const modalClose = document.getElementById("modal-close");
+  const step1 = document.getElementById("modal-step-1");
+  const deliveryForm = document.getElementById("modal-delivery");
+  const pickupForm = document.getElementById("modal-pickup");
+
+  function openModal() {
+    modal.style.display = "block";
+    step1.style.display = "block";
+    deliveryForm.style.display = "none";
+    pickupForm.style.display = "none";
+    clearInputs();
+  }
+
+  modalClose.addEventListener("click", () => {
+    modal.style.display = "none";
+  });
+
+  window.addEventListener("click", (e) => {
+    if (e.target === modal) modal.style.display = "none";
+  });
+
+  function clearInputs() {
+    ["delivery-name", "delivery-email", "delivery-address", "delivery-phone",
+     "pickup-name", "pickup-email", "pickup-branch"].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.value = "";
+    });
+  }
+
+  function selectOption(option) {
+    step1.style.display = "none";
+    deliveryForm.style.display = option === "delivery" ? "block" : "none";
+    pickupForm.style.display = option === "pickup" ? "block" : "none";
+  }
+
+  // Process checkout, call backend, redirect to payment gateway
+  async function processCheckout(type) {
+  let customerName, customerEmail, address = "", phone = "", branch = "";
+
+  if (type === "delivery") {
+    customerName = document.getElementById("delivery-name").value.trim();
+    customerEmail = document.getElementById("delivery-email").value.trim();
+    address = document.getElementById("delivery-address").value.trim();
+    phone = document.getElementById("delivery-phone").value.trim();
+
+    if (!customerName || !customerEmail || !address || !phone) {
+      alert("Please fill in all delivery details.");
+      return;
+    }
+  } else if (type === "pickup") {
+    customerName = document.getElementById("pickup-name").value.trim();
+    customerEmail = document.getElementById("pickup-email").value.trim();
+    branch = document.getElementById("pickup-branch").value;
+
+    if (!customerName || !customerEmail || !branch) {
+      alert("Please fill in all pickup details.");
+      return;
+    }
+  } else {
+    alert("Invalid order type.");
+    return;
+  }
+
+  const totalAmount = cart.reduce((sum, item) => sum + item.price, 0);
+  if (totalAmount <= 0) {
+    alert("Your cart is empty.");
+    return;
+  }
+
+  const reference = `BOT-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
+  localStorage.setItem("orderReference", reference);
+
+  const orderDetails = {
+    name: customerName,
+    email: customerEmail,
+    address,
+    phone,
+    branch,
+    items: cart.map(item => ({
+      name: item.item,
+      quantity: 1,
+      price: item.price,
+    })),
+    total: totalAmount.toFixed(2),
+    method: type,
+    reference,
+  };
+
+  try {
+    const saveResponse = await fetch("http://localhost:5000/api/orders", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(orderDetails),
+    });
+
+    const saveData = await saveResponse.json();
+
+    if (!saveResponse.ok) {
+      alert(`❌ Failed to save your order: ${saveData.error || saveData.message}`);
+      return;
+    }
+
+    const payload = {
+      amountInCents: Math.round(totalAmount * 100),
+      customer: {
+        name: customerName,
+        email: customerEmail,
+      },
+      reference,
+    };
+
+    const paymentResponse = await fetch("http://localhost:5000/create-checkout", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+
+    const paymentData = await paymentResponse.json();
+
+    if (paymentData.success && paymentData.checkoutUrl) {
+      window.location.href = paymentData.checkoutUrl;
+    } else {
+      alert("❌ Failed to initiate payment. Please try again.");
+    }
+  } catch (error) {
+    console.error("Checkout error:", error);
+    alert("❌ Error processing your order. Please try again later.");
+  }
+}
+
+</script>
+</body>
+</html>

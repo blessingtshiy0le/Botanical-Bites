@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Page - Botanical Bites</title>
+
+    <!--========== BOX ICONS ==========-->
+    <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+
+    <!--========== CSS ==========-->
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        .menu__items {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .menu__item {
+            background-color: #fff;
+            border-radius: 1rem;
+            padding: 1rem;
+            color: black;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.2s;
+        }
+
+        .menu__item:hover {
+            transform: scale(1.03);
+        }
+
+        .menu__img {
+            width: 220px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .menu__price {
+            font-weight: bold;
+            color: #048654;
+        }
+
+        .menu__filters {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .filter-button {
+            background-color: #eee;
+            border: none;
+            padding: 0.5rem 1rem;
+            margin: 0 0.5rem;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .filter-button:hover {
+            background-color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <header class="l-header" id="header">
+            <nav class="nav bd-container">
+                <a href="#" class="nav__logo">Botanical Bites <i class="fa-solid fa-spa"></i></a>
+
+                <div class="nav__menu" id="nav-menu">
+                    <ul class="nav__list">
+                        <li class="nav__item"><a href="index.html" class="nav__link active-link">Home</a></li>
+                        <li class="nav__item"><a href="about.html" class="nav__link">About</a></li>
+                        <li class="nav__item"><a href="#services" class="nav__link">Services</a></li>
+                        <li class="nav__item"><a href="#menu" class="nav__link">Menu</a></li>
+                        <li class="nav__item"><a href="contact.html" class="nav__link">Contact Us</a></li>
+                        <li class="nav__item"><a href="promotions.html" class="nav__link">Promotions</a></li>
+
+                        <li><i class='bx bx-moon change-theme' id="theme-button"></i></li>
+                    </ul>
+                </div>
+
+                <div class="nav__toggle" id="nav-toggle">
+                    <i class='bx bx-menu'></i>
+                </div>
+            </nav>
+        </header>
+
+    <section class="menu section bd-container" id="menu">
+        <span class="section-subtitle">Special Menu</span>
+        <h2 class="section-title">À la Carte</h2>
+
+        <!-- Filter buttons -->
+        <div class="menu__filters">
+            <button class="filter-button" data-filter="all">All</button>
+            <button class="filter-button" data-filter="starters">Starters</button>
+            <button class="filter-button" data-filter="mains">Mains</button>
+            <button class="filter-button" data-filter="bowls">Bowls & Wraps</button>
+            <button class="filter-button" data-filter="desserts">Desserts</button>
+            <button class="filter-button" data-filter="drinks">Drinks</button>
+        </div>
+
+        <div class="menu__categories">
+
+    <div class="menu__category-block starters">
+        <h3>Starters </h3>
+        <div class="menu__items">
+            <div class="menu__item starters">
+                <img src="Images/starter1.jpg" alt="Garden Salad" class="menu__img">
+                <h4>Avocado & Microgreens Toast</h4>
+                <p>Toasted sourdough topped with smashed avocado, cherry tomatoes & microgreens.</p>
+                <span class="menu__price">R68</span>
+            </div>
+            <div class="menu__item starters">
+                <img src="Images/starter2.jpg" alt="Garden Salad" class="menu__img">
+                <h4>Beetroot Carpaccio</h4>
+                <p>Thin beetroot slices, citrus vinaigrette, rocket & cashew crumble.</p>
+                <span class="menu__price">R75</span>
+            </div>
+            <div class="menu__item starters">
+                <img src="Images/starter3.jpg" alt="Garden Salad" class="menu__img">
+                <h4>Sweet Potato & Lentil Cakes</h4>
+                <p>Golden brown patties with spiced lentils, served with mint yoghurt.</p>
+                <span class="menu__price">R70</span>
+            </div>
+            <div class="menu__item starters">
+                <img src="Images/starter4.jpg" alt="Garden Salad" class="menu__img">
+                <h4>Zucchini Fritters</h4>
+                <p>Pan-fried with flax meal, served with basil lemon dip.</p>
+                <span class="menu__price">R60</span>
+            </div>
+            <div class="menu__item starters">
+                <img src="Images/starter5.jpg" alt="Garden Salad" class="menu__img">
+                <h4>Butternut Soup Shots</h4>
+                <p>Creamy butternut served in espresso cups with coconut cream swirl.</p>
+                <span class="menu__price">R50</span>
+            </div>
+            <div class="menu__item starters">
+                <img src="Images/starter6.jpg" alt="Garden Salad" class="menu__img">
+                <h4>Crispy Kale Chips & Hummus Dip</h4>
+                <p>Lightly salted kale chips served with roasted garlic hummus.</p>
+                <span class="menu__price">R55</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="menu__category-block mains">
+        <h3>Mains</h3>
+        <div class="menu__items">
+            <div class="menu__item mains">
+                <img src="Images/main1.jpg" alt="Grilled Ribeye" class="menu__img">
+                <h4>Chickpea & Quinoa Buddha Bowl</h4>
+                <p>Chickpeas, roasted veggies, kale, tahini dressing.</p>
+                <span class="menu__price">R120</span>
+            </div>
+            <div class="menu__item mains">
+                <img src="Images/main2.jpg" alt="Grilled Ribeye" class="menu__img">
+                <h4>Cauliflower Steak with Herb Oil</h4>
+                <p>Grilled, served with a lemon chimichurri sauce and microgreens.</p>
+                <span class="menu__price">R110</span>
+            </div>
+            <div class="menu__item mains">
+                <img src="Images/main3.jpg" alt="Grilled Ribeye" class="menu__img">
+                <h4>Stuffed Bell Peppers</h4>
+                <p>Brown rice, black beans, tomatoes & guacamole.</p>
+                <span class="menu__price">R98</span>
+            </div>
+            <div class="menu__item mains">
+                <img src="images/main4.jpg" alt="Grilled Ribeye" class="menu__img">
+                <h4>Butternut Risotto</h4>
+                <p>Creamy arborio rice with roasted butternut and vegan parmesan.</p>
+                <span class="menu__price">R105</span>
+            </div>
+            <div class="menu__item mains">
+                <img src="images/main5.jpg" alt="Grilled Ribeye" class="menu__img">
+                <h4>Aubergine Lasagna</h4>
+                <p>Layers of grilled eggplant, lentil ragu, and cashew béchamel.</p>
+                <span class="menu__price">R115</span>
+            </div>
+            <div class="menu__item mains">
+                <img src="Images/main6.jpg" alt="Grilled Ribeye" class="menu__img">
+                <h4>Wild Mushroom Stroganoff </h4>
+                <p>Earthy mushroom blend in a dairy-free creamy sauce with wholegrain pasta.</p>
+                <span class="menu__price">R120</span>
+            </div>
+            <div class="menu__item mains">
+                <img src="Images/main7.jpg" alt="Grilled Ribeye" class="menu__img">
+                <h4>Lemon-Herb Grilled Trout</h4>
+                <p>Trout fillet with roasted veggies & citrus glaze.</p>
+                <span class="menu__price">R145</span>
+            </div>
+            <div class="menu__item mains">
+                <img src="Images/main8.jpg" alt="Grilled Ribeye" class="menu__img">
+                <h4>Free-Range Chicken Fillet with Pumpkin Puree</h4>
+                <p>Grilled breast, rosemary oil drizzle, served with seasonal greens.</p>
+                <span class="menu__price">R135</span>
+            </div>
+            <div class="menu__item mains">
+                <img src="Images/main9.jpg" alt="Grilled Ribeye" class="menu__img">
+                <h4>Grass-Fed Beef & Avocado Stack</h4>
+                <p>Seared medallions layered with avocado mousse & tomato relish.</p>
+                <span class="menu__price">R155</span>
+            </div>
+            <div class="menu__item mains">
+                <img src="Images/main10.jpg" alt="Grilled Ribeye" class="menu__img">
+                <h4>Grilled Prawn & Mango Salsa Bowl</h4>
+                <p>Lightly spiced prawns served over brown rice and mango salad.</p>
+                <span class="menu__price">R160</span>
+            </div>
+            <div class="menu__item mains">
+                <img src="Images/main11.jpg" alt="Grilled Ribeye" class="menu__img">
+                <h4>Organic Chicken & Quinoa Stir-Fry</h4>
+                <p>Stir-fried with garden vegetables in tamari sauce.</p>
+                <span class="menu__price">R130</span>
+            </div>
+            <div class="menu__item mains">
+                <img src="Images/main12.jpg" alt="Grilled Ribeye" class="menu__img">
+                <h4>Herbed Lamb Chops with Mint Pea Puree</h4>
+                <p>Grass-fed lamb grilled and paired with a minty puree.</p>
+                <span class="menu__price">R165</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="menu__category-block bowls">
+        <h3>Bowls & Wraps</h3>
+        <div class="menu__items">
+            <div class="menu__item bowls">
+                <img src="Images/bowl1.jpg" alt="Chocolate Mousse" class="menu__img">
+                <h4>Green Power Wrap</h4>
+                <p>Spinach tortilla with hummus, carrot, avo, cucumber, and sprouts.</p>
+                <span class="menu__price">R95</span>
+            </div>
+            <div class="menu__item bowls">
+                <img src="Images/bowl2.jpg" alt="Chocolate Mousse" class="menu__img">
+                <h4>Raw Zucchini Noodle Bowl</h4>
+                <p>Zoodles in creamy cashew pesto, cherry tomatoes, and seeds.</p>
+                <span class="menu__price">R105</span>
+            </div>
+            <div class="menu__item bowls">
+                <img src="Images/bowl3.jpg" alt="Chocolate Mousse" class="menu__img">
+                <h4>Tempeh & Wild Rice Bowl</h4>
+                <p>Grilled tempeh, edamame, sesame, radish & tamari glaze.</p>
+                <span class="menu__price">R115</span>
+            </div>
+            <div class="menu__item bowls">
+                <img src="Images/bowl4.jpg" alt="Chocolate Mousse" class="menu__img">
+                <h4>Rainbow Falafel Wrap</h4>
+                <p>Beetroot, spinach & pumpkin falafels in a wholewheat wrap with tahini.</p>
+                <span class="menu__price">R90</span>
+            </div>
+            <div class="menu__item bowls">
+                <img src="Images/bowl5.jpg" alt="Chocolate Mousse" class="menu__img">
+                <h4>Vegan Pad Thai Bowl</h4>
+                <p>Rice noodles with tofu, peanuts, spring onion, and lime.</p>
+                <span class="menu__price">R110</span>
+            </div>
+            <div class="menu__item bowls">
+                <img src="Images/bowl6.jpg" alt="Chocolate Mousse" class="menu__img">
+                <h4>Roasted Veg & Avo Wrap</h4>
+                <p>Grilled peppers, baby marrow, red onion, and guacamole in a gluten-free wrap.</p>
+                <span class="menu__price">R92</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="menu__category-block desserts">
+        <h3>Desserts</h3>
+        <div class="menu__items">
+            <div class="menu__item desserts">
+                <img src="Images/desert1.jpg" alt="Berry Smoothie" class="menu__img">
+                <h4>Chia & Coconut Parfait</h4>
+                <p>Coconut milk chia pudding layered with fruit & nut granola.</p>
+                <span class="menu__price">R55</span>
+            </div>
+            <div class="menu__item desserts">
+                <img src="Images/desert2.jpg" alt="Berry Smoothie" class="menu__img">
+                <h4>Raw Cacao Brownie</h4>
+                <p>Gluten-free, made with cacao, dates, and almond flour.</p>
+                <span class="menu__price">R45</span>
+            </div>
+            <div class="menu__item desserts">
+                <img src="Images/desert3.jpg" alt="Berry Smoothie" class="menu__img">
+                <h4>Matcha Avocado Cheesecake</h4>
+                <p>No-bake, creamy and rich with earthy matcha tones.</p>
+                <span class="menu__price">R60</span>
+            </div>
+            <div class="menu__item desserts">
+                <img src="Images/desert4.jpg" alt="Berry Smoothie" class="menu__img">
+                <h4>Vegan Banana Bread Slice</h4>
+                <p>Moist, nutty, made with coconut sugar and almond milk.</p>
+                <span class="menu__price">R40</span>
+            </div>
+            <div class="menu__item desserts">
+                <img src="Images/desert5.jpg" alt="Berry Smoothie" class="menu__img">
+                <h4>Chocolate Avocado Mousse</h4>
+                <p>Rich mousse made with ripe avocado and organic cocoa.</p>
+                <span class="menu__price">R50</span>
+            </div>
+            <div class="menu__item desserts">
+                <img src="Images/desert6.jpg" alt="Berry Smoothie" class="menu__img">
+                <h4>Apple & Cinnamon Crumble</h4>
+                <p>Warm stewed apples topped with an oat-almond crust, served with coconut cream.</p>
+                <span class="menu__price">R58</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="menu__category-block drinks">
+        <h3>Drinks</h3>
+        <div class="menu__items">
+            <div class="menu__item drinks">
+                <img src="Images/drink1.jpg" alt="Berry Smoothie" class="menu__img">
+                <h4>Green Detox Juice</h4>
+                <p>Kale, cucumber, green apple, mint & lemon.</p>
+                <span class="menu__price">R48</span>
+            </div>
+            <div class="menu__item drinks">
+                <img src="Images/drink2.jpg" alt="Berry Smoothie" class="menu__img">
+                <h4>Golden Turmeric Latte (Oat Milk)</h4>
+                <p>Calming turmeric blend with cinnamon and oat milk.</p>
+                <span class="menu__price">R42</span>
+            </div>
+            <div class="menu__item drinks">
+                <img src="Images/drink3.jpg" alt="Berry Smoothie" class="menu__img">
+                <h4>Botanical Iced Tea</h4>
+                <p>Hibiscus, rooibos & rose petals served over ice.</p>
+                <span class="menu__price">R38</span>
+            </div>
+            <div class="menu__item drinks">
+                <img src="Images/drink4.png" alt="Berry Smoothie" class="menu__img">
+                <h4>Berry Kombucha (House Brewed)</h4>
+                <p>Lightly fizzy, fermented tea with mixed berries.</p>
+                <span class="menu__price">R50</span>
+            </div>
+            <div class="menu__item drinks">
+                <img src="Images/drink5.jpg" alt="Berry Smoothie" class="menu__img">
+                <h4>Spiced Carrot & Orange Juice</h4>
+                <p>Cold-pressed carrots, orange, ginger, and a touch of turmeric.</p>
+                <span class="menu__price">R44</span>
+            </div>
+            <div class="menu__item drinks">
+                <img src="Images/drnk 6.jpg" alt="Berry Smoothie" class="menu__img">
+                <h4>Coconut Water & Lime</h4>
+                <p>Chilled coconut water served with a squeeze of lime.</p>
+                <span class="menu__price">R35</span>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+                <!-- Add more drinks -->
+        </div>
+    </section>
+
+ <!--========== MAIN.JS LIGHT/DARK MODE ONLY ==========-->
+  <script>
+    const themeButton = document.getElementById('theme-button');
+    const darkTheme = 'dark-theme';
+    const iconTheme = 'bx-sun';
+
+    const selectedTheme = localStorage.getItem('selected-theme');
+    const selectedIcon = localStorage.getItem('selected-icon');
+
+    const getCurrentTheme = () =>
+      document.body.classList.contains(darkTheme) ? 'dark' : 'light';
+    const getCurrentIcon = () =>
+      themeButton.classList.contains(iconTheme) ? 'bx-sun' : 'bx-moon';
+
+    if (selectedTheme) {
+      document.body.classList[selectedTheme === 'dark' ? 'add' : 'remove'](darkTheme);
+      themeButton.classList[selectedIcon === 'bx-sun' ? 'add' : 'remove'](iconTheme);
+    }
+
+    themeButton.addEventListener('click', () => {
+      document.body.classList.toggle(darkTheme);
+      themeButton.classList.toggle(iconTheme);
+      localStorage.setItem('selected-theme', getCurrentTheme());
+      localStorage.setItem('selected-icon', getCurrentIcon());
+    });
+  </script>
+    <script>
+    const filterButtons = document.querySelectorAll('.filter-button');
+    const categoryBlocks = document.querySelectorAll('.menu__category-block');
+
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const filter = button.getAttribute('data-filter');
+
+            categoryBlocks.forEach(block => {
+                if (filter === 'all' || block.classList.contains(filter)) {
+                    block.style.display = 'block';
+                } else {
+                    block.style.display = 'none';
+                }
+            });
+        });
+    });
+</script>
+
+
+</body>
+</html>
